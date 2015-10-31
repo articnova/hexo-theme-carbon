@@ -10,14 +10,25 @@ mixin link(name, url, isOut)
       
 mixin external-link(name, url)
   +link(name, url, true)
-
-ul#footer-links
-  +footer-link('about')
-  +footer-link('archives')
-  +link(__('feed'), url_for(theme.feed))
-  +external-link('Theme.Carbon', theme.repo)
-  +external-link('Hexo', 'https://github.com/hexojs/hexo')
-
+  
+mixin profileicon(url, type)
+  a(href=url, target='_blank')
+    icon(class='fa fa-' + type)
+  
+div
+  ul#footer-links
+    // +footer-link('about')
+    +footer-link('archives')
+    // +link(__('feed'), url_for(theme.feed))
+    // +external-link('Theme.Carbon', theme.repo)
+    +external-link('Hexo', 'https://github.com/hexojs/hexo')
+    
+  div#footer-profile
+      !=config.author
+      div
+        +profileicon(config.github, 'github')
+        +profileicon(config.twitter, 'twitter')
+  
 if theme.swiftype
   div#search
     a(href='javascript:void(0)')
